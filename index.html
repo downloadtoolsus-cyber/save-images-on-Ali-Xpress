@@ -3,19 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AliExpress Image Saver | Browser Tool for Product Images</title>
+  <title>AliExpress Image Saver | Product Image Tool for Chrome</title>
   <meta
     name="description"
-    content="Save AliExpress product images faster with a browser-based image tool for ecommerce research and store building."
-  />
-  <meta
-    name="keywords"
-    content="AliExpress image saver, product image tool, browser image tool, ecommerce image saver, dropshipping image helper"
+    content="Save AliExpress product images faster with a simple Chrome-based tool for product research, store setup, and ecommerce workflows."
   />
   <meta name="robots" content="index, follow" />
   <style>
     :root {
-      --bg: #f7f8fb;
+      --bg: #f6f8fb;
       --card: #ffffff;
       --text: #1f2937;
       --muted: #6b7280;
@@ -23,11 +19,15 @@
       --brand: #2563eb;
       --brand-dark: #1d4ed8;
       --max: 1120px;
-      --radius: 16px;
+      --radius: 18px;
     }
 
     * {
       box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -47,6 +47,11 @@
       text-decoration: underline;
     }
 
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
     .wrap {
       max-width: var(--max);
       margin: 0 auto;
@@ -58,15 +63,15 @@
       border-bottom: 1px solid var(--line);
       position: sticky;
       top: 0;
-      z-index: 20;
+      z-index: 50;
     }
 
     .topbar {
+      min-height: 72px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      min-height: 72px;
-      gap: 20px;
+      gap: 18px;
     }
 
     .brand {
@@ -87,12 +92,12 @@
     }
 
     .hero {
-      padding: 56px 0 36px;
+      padding: 56px 0 30px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-columns: 1.05fr 0.95fr;
       gap: 28px;
       align-items: center;
     }
@@ -100,36 +105,46 @@
     .eyebrow {
       display: inline-block;
       padding: 6px 12px;
+      border-radius: 999px;
       background: #e8f0ff;
       color: var(--brand-dark);
-      border-radius: 999px;
       font-size: 13px;
       font-weight: 700;
       margin-bottom: 16px;
     }
 
     h1, h2, h3 {
-      line-height: 1.2;
       margin-top: 0;
+      line-height: 1.2;
     }
 
     h1 {
-      font-size: 44px;
+      font-size: 46px;
       margin-bottom: 16px;
+    }
+
+    h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
     }
 
     .lead {
       font-size: 18px;
       color: var(--muted);
       max-width: 620px;
-      margin-bottom: 22px;
+      margin-bottom: 24px;
     }
 
     .actions {
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .btn {
@@ -138,6 +153,7 @@
       border-radius: 12px;
       font-weight: 700;
       border: 1px solid transparent;
+      transition: 0.2s ease;
     }
 
     .btn-primary {
@@ -157,8 +173,8 @@
     }
 
     .btn-secondary:hover {
-      text-decoration: none;
       border-color: #cfd5dd;
+      text-decoration: none;
     }
 
     .hero-note {
@@ -171,31 +187,22 @@
       border: 1px solid var(--line);
       border-radius: var(--radius);
       padding: 18px;
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.05);
+    }
+
+    .preview-card {
+      padding: 14px;
     }
 
     .preview-img {
       width: 100%;
-      height: auto;
-      display: block;
       border-radius: 14px;
       border: 1px solid var(--line);
       background: #fff;
     }
 
-    .preview-caption {
-      margin-top: 12px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
     section {
-      padding: 24px 0 20px;
-    }
-
-    .section-title {
-      font-size: 32px;
-      margin-bottom: 10px;
+      padding: 24px 0;
     }
 
     .section-copy {
@@ -210,12 +217,9 @@
       gap: 18px;
     }
 
-    .feature h3 {
-      font-size: 20px;
-      margin-bottom: 10px;
-    }
-
-    .feature p {
+    .feature p,
+    .step p,
+    .info p {
       color: var(--muted);
       margin: 0;
     }
@@ -230,31 +234,43 @@
       width: 36px;
       height: 36px;
       border-radius: 999px;
-      background: #e8f0ff;
-      color: var(--brand-dark);
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      background: #e8f0ff;
+      color: var(--brand-dark);
       font-weight: 700;
       margin-bottom: 14px;
     }
 
-    .trust {
+    .access-box {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .info-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 18px;
     }
 
-    .trust p {
-      margin: 0 0 10px;
+    .checklist {
+      padding-left: 18px;
+      margin: 0;
       color: var(--muted);
     }
 
+    .checklist li {
+      margin-bottom: 8px;
+    }
+
     footer {
-      margin-top: 30px;
-      padding: 28px 0 44px;
-      border-top: 1px solid var(--line);
+      margin-top: 24px;
       background: #fff;
+      border-top: 1px solid var(--line);
+      padding: 28px 0 40px;
     }
 
     .footer-grid {
@@ -279,19 +295,24 @@
       .hero-grid,
       .grid-3,
       .steps,
-      .trust,
+      .access-box,
+      .info-grid,
       .footer-grid {
         grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 14px 0;
       }
 
       h1 {
         font-size: 34px;
       }
 
-      .topbar {
-        align-items: flex-start;
-        padding: 14px 0;
-        flex-direction: column;
+      h2 {
+        font-size: 28px;
       }
     }
   </style>
@@ -303,7 +324,7 @@
       <nav>
         <a href="#features">Features</a>
         <a href="#how-it-works">How It Works</a>
-        <a href="#about">About</a>
+        <a href="#get-it">Get It</a>
         <a href="privacy.html">Privacy</a>
       </nav>
     </div>
@@ -313,64 +334,59 @@
     <section class="hero">
       <div class="wrap hero-grid">
         <div>
-          <div class="eyebrow">Browser-based product image tool</div>
-          <h1>Save AliExpress product images faster for research and store building</h1>
+          <div class="eyebrow">Chrome product image tool</div>
+          <h1>Save AliExpress product images faster while working in Chrome</h1>
           <p class="lead">
-            This page explains how our image-saving workflow helps ecommerce sellers collect product visuals
-            with less manual work. It is designed for people who want a cleaner way to gather listing images
-            while working in their browser.
+            This tool helps ecommerce sellers and product researchers collect product visuals with a simpler workflow.
+            Review listings, save the images you need, and keep your store work moving.
           </p>
+
           <div class="actions">
-            <a class="btn btn-primary" href="#how-it-works">See How It Works</a>
-            <a class="btn btn-secondary" href="#about">Learn More</a>
+            <a class="btn btn-primary" href="https://chromewebstore.google.com/detail/aliexpress-image-download/clhjbkeakmannhalcigjgfnbmdfekkon?pli=1" target="_blank" rel="noopener noreferrer">View on Chrome Web Store</a>
+            <a class="btn btn-secondary" href="#how-it-works">See How It Works</a>
           </div>
+
           <p class="hero-note">
-            Built for product research, store setup, and daily ecommerce workflows.
+            Designed for Chrome on desktop browsers.
           </p>
         </div>
 
-        <div class="card">
+        <div class="card preview-card">
           <img
             src="tool-preview.png"
-            alt="Preview of the AliExpress image saver interface"
+            alt="AliExpress Image Saver preview"
             class="preview-img"
           />
-          <div class="preview-caption">
-            Add your screenshot here by saving your image as <strong>tool-preview.png</strong> in the same folder.
-          </div>
         </div>
       </div>
     </section>
 
     <section id="features">
       <div class="wrap">
-        <h2 class="section-title">What this tool helps you do</h2>
+        <h2>What this tool helps you do</h2>
         <p class="section-copy">
-          The goal is simple. Save time when collecting product images for product research, listing review,
-          and store planning. The page focuses on the use case and the value for the user.
+          Keep your product image workflow simple when reviewing listings, preparing store content, or researching products for ecommerce use.
         </p>
 
         <div class="grid-3">
           <div class="card feature">
-            <h3>Faster image collection</h3>
+            <h3>Save time on product research</h3>
             <p>
-              Gather product images with fewer steps so you can move through product research and store tasks
-              more quickly.
+              Collect listing images faster so you can focus on product selection, store planning, and content preparation.
             </p>
           </div>
 
           <div class="card feature">
-            <h3>Cleaner workflow</h3>
+            <h3>Use a cleaner workflow</h3>
             <p>
-              Keep your image-saving process simple while browsing product pages and reviewing listing content.
+              Move through product pages with fewer manual steps when gathering visuals for your ecommerce work.
             </p>
           </div>
 
           <div class="card feature">
-            <h3>Built for ecommerce users</h3>
+            <h3>Built for store builders</h3>
             <p>
-              Useful for dropshipping sellers, product researchers, and people who need a steady way to collect
-              product visuals.
+              Useful for dropshipping sellers, product researchers, and anyone working with AliExpress product listings.
             </p>
           </div>
         </div>
@@ -379,35 +395,58 @@
 
     <section id="how-it-works">
       <div class="wrap">
-        <h2 class="section-title">How it works</h2>
+        <h2>How it works</h2>
         <p class="section-copy">
-          Keep this section simple. Do not describe it like software setup. Describe the user flow like a normal
-          browser workflow.
+          The process is simple and focused on the result you want.
         </p>
 
         <div class="steps">
-          <div class="card">
+          <div class="card step">
             <div class="step-num">1</div>
             <h3>Browse product pages</h3>
             <p>
-              Review the products you are researching and decide which images fit your product planning or store needs.
+              Review the listings you want to research and identify the visuals that fit your product workflow.
             </p>
           </div>
 
-          <div class="card">
+          <div class="card step">
             <div class="step-num">2</div>
-            <h3>Choose the visuals you need</h3>
+            <h3>Select the images you need</h3>
             <p>
-              Pick the product images that matter for analysis, comparisons, and content preparation.
+              Choose the product images that matter for comparisons, store prep, and content planning.
             </p>
           </div>
 
-          <div class="card">
+          <div class="card step">
             <div class="step-num">3</div>
-            <h3>Save and organize your work</h3>
+            <h3>Keep your work organized</h3>
             <p>
-              Keep your product visuals in one place so you can move into store setup, ad prep, or product review.
+              Save and manage product visuals so you can move into listing review, ads, or store setup faster.
             </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="get-it">
+      <div class="wrap">
+        <div class="card access-box">
+          <div>
+            <h2>Get the tool from the Chrome Web Store</h2>
+            <p class="section-copy" style="margin-bottom: 16px;">
+              You can access the extension through its Chrome Web Store listing and add it to your desktop Chrome browser there.
+            </p>
+            <div class="actions" style="margin-bottom: 0;">
+              <a class="btn btn-primary" href="https://chromewebstore.google.com/detail/aliexpress-image-download/clhjbkeakmannhalcigjgfnbmdfekkon?pli=1" target="_blank" rel="noopener noreferrer">Open Chrome Web Store Listing</a>
+            </div>
+          </div>
+
+          <div class="info">
+            <ul class="checklist">
+              <li>Clear access path for users</li>
+              <li>Works best for Chrome on desktop</li>
+              <li>Useful for product research and store work</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -415,31 +454,24 @@
 
     <section id="about">
       <div class="wrap">
-        <h2 class="section-title">About this site</h2>
+        <h2>About this site</h2>
         <p class="section-copy">
-          This site is a product information page for an AliExpress image-saving workflow. It explains the tool,
-          its purpose, and who it helps. It is not a file-hosting page and it does not start any direct file action
-          from this page.
+          This page explains the tool, who it helps, and where users can access it. It is meant to give a clear product overview and a direct path to the Chrome Web Store listing.
         </p>
 
-        <div class="trust">
-          <div class="card">
-            <h3>Who this is for</h3>
+        <div class="info-grid">
+          <div class="card info">
+            <h3>Who it is for</h3>
             <p>
-              This workflow is for ecommerce sellers, product researchers, and store builders who need product images
-              for planning and review.
-            </p>
-            <p>
-              It is meant to reduce repetitive work when handling product visuals from marketplace pages.
+              This tool is for ecommerce sellers, product researchers, and store builders who need a better way to collect product visuals from AliExpress listings.
             </p>
           </div>
 
-          <div class="card">
-            <h3>Business details</h3>
+          <div class="card info">
+            <h3>Site details</h3>
             <p><strong>Site name:</strong> AliExpress Image Saver</p>
-            <p><strong>Contact:</strong> Available via email below</p>
-            <p><strong>Privacy page:</strong> <a href="privacy.html">Read Privacy Policy</a></p>
-            <p><strong>Terms:</strong> Add a terms page later if you want an extra trust signal.</p>
+            <p><strong>Privacy:</strong> <a href="privacy.html">View Privacy Policy</a></p>
+            <p><strong>Access:</strong> Chrome Web Store listing available from the buttons above</p>
           </div>
         </div>
       </div>
