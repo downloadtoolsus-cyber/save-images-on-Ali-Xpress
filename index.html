@@ -2,516 +2,460 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Aliexpress image downloader – Download AliExpress images and videos</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AliExpress Image Saver | Browser Tool for Product Images</title>
   <meta
     name="description"
-    content="Aliexpress image downloader lets you download AliExpress product images and videos in one click. Ideal for dropshippers and store owners."
+    content="Save AliExpress product images faster with a browser-based image tool for ecommerce research and store building."
   />
-
+  <meta
+    name="keywords"
+    content="AliExpress image saver, product image tool, browser image tool, ecommerce image saver, dropshipping image helper"
+  />
+  <meta name="robots" content="index, follow" />
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    :root {
+      --bg: #f7f8fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --brand: #2563eb;
+      --brand-dark: #1d4ed8;
+      --max: 1120px;
+      --radius: 16px;
     }
 
-    :root {
-      --bg: #050816;
-      --bg-alt: #0b1020;
-      --accent: #4f46e5;
-      --accent-soft: rgba(79, 70, 229, 0.15);
-      --text: #f9fafb;
-      --muted: #9ca3af;
-      --border: #1f2937;
-      --success: #4ade80;
-      --danger: #f97373;
-      --radius-lg: 18px;
-      --radius-full: 999px;
-      --max-width: 1120px;
+    * {
+      box-sizing: border-box;
     }
 
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #111827, #020617 60%);
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
       color: var(--text);
       line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
     }
 
-    .page {
-      min-height: 100vh;
+    a {
+      color: var(--brand);
+      text-decoration: none;
     }
 
-    .wrapper {
-      width: 100%;
-      max-width: var(--max-width);
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .wrap {
+      max-width: var(--max);
       margin: 0 auto;
-      padding: 20px 20px 40px;
+      padding: 0 20px;
     }
 
     header {
+      background: #fff;
+      border-bottom: 1px solid var(--line);
       position: sticky;
       top: 0;
       z-index: 20;
-      backdrop-filter: blur(16px);
-      background: rgba(2, 6, 23, 0.8);
-      border-bottom: 1px solid rgba(31, 41, 55, 0.4);
     }
 
-    .header-inner {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 14px 20px;
+    .topbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      min-height: 72px;
+      gap: 20px;
     }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo-badge {
-      width: 34px;
-      height: 34px;
-      border-radius: 12px;
-      background: radial-gradient(circle at 20% 0, #a855f7, #4f46e5 50%, #0f172a);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .brand {
+      font-size: 22px;
       font-weight: 700;
-      font-size: 18px;
-    }
-
-    .logo-text span:first-child {
-      font-weight: 600;
-      font-size: 16px;
-    }
-
-    .logo-text span:last-child {
-      font-size: 12px;
-      color: var(--muted);
+      color: var(--text);
     }
 
     nav {
       display: flex;
       gap: 18px;
-      font-size: 13px;
-      color: var(--muted);
+      flex-wrap: wrap;
     }
 
     nav a {
-      color: inherit;
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-    }
-
-    nav a:hover {
-      color: #fff;
-      border-color: var(--accent);
-    }
-
-    .pill {
-      display: inline-flex;
-      gap: 8px;
-      padding: 4px 10px;
-      border-radius: var(--radius-full);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      background: rgba(255, 255, 255, 0.1);
-      font-size: 11px;
       color: var(--muted);
+      font-size: 15px;
     }
 
-    .pill-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #4ade80;
-    }
-
-    .main-hero {
-      padding-top: 40px;
-      padding-bottom: 40px;
+    .hero {
+      padding: 56px 0 36px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 30px;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
       align-items: center;
     }
 
-    @media (max-width: 900px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-      }
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      background: #e8f0ff;
+      color: var(--brand-dark);
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 16px;
     }
 
-    .hero-heading {
-      font-size: 40px;
-      line-height: 1.15;
-      margin-bottom: 10px;
+    h1, h2, h3 {
+      line-height: 1.2;
+      margin-top: 0;
     }
 
-    .highlight {
-      background: linear-gradient(120deg, #a855f7, #4f46e5, #22d3ee);
-      -webkit-background-clip: text;
-      color: transparent;
+    h1 {
+      font-size: 44px;
+      margin-bottom: 16px;
     }
 
-    .hero-subtitle {
-      font-size: 15px;
+    .lead {
+      font-size: 18px;
       color: var(--muted);
-      max-width: 520px;
+      max-width: 620px;
+      margin-bottom: 22px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 18px;
+      border-radius: 12px;
+      font-weight: 700;
+      border: 1px solid transparent;
     }
 
     .btn-primary {
-      display: inline-flex;
-      gap: 8px;
-      padding: 10px 18px;
-      border-radius: var(--radius-full);
-      background: #4f46e5;
+      background: var(--brand);
       color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--brand-dark);
       text-decoration: none;
-      font-weight: 500;
-      margin-top: 18px;
     }
 
-    .hero-meta {
-      margin-top: 16px;
-      display: flex;
-      gap: 12px;
+    .btn-secondary {
+      background: #fff;
+      color: var(--text);
+      border-color: var(--line);
+    }
+
+    .btn-secondary:hover {
+      text-decoration: none;
+      border-color: #cfd5dd;
+    }
+
+    .hero-note {
       color: var(--muted);
-      font-size: 12px;
-      flex-wrap: wrap;
-    }
-
-    .hero-right-card {
-      border-radius: 20px;
-      border: 1px solid rgba(55, 65, 81, 0.7);
-      background: rgba(15, 23, 42, 0.8);
-      padding: 16px;
-    }
-
-    .hero-right-title {
       font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 6px;
     }
 
-    .hero-right-subtext {
-      font-size: 12px;
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+    }
+
+    .preview-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .preview-caption {
+      margin-top: 12px;
       color: var(--muted);
+      font-size: 14px;
     }
 
-    .metric-card {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      padding: 10px;
-      text-align: center;
-      color: #fff;
-      font-size: 13px;
+    section {
+      padding: 24px 0 20px;
     }
 
-    .features-grid {
-      margin-top: 20px;
+    .section-title {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .section-copy {
+      color: var(--muted);
+      max-width: 760px;
+      margin-bottom: 24px;
+    }
+
+    .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+      gap: 18px;
     }
 
-    @media (max-width: 768px) {
-      .features-grid {
-        grid-template-columns: 1fr;
-      }
+    .feature h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
     }
 
-    .feature-card {
-      padding: 12px;
-      background: rgba(15, 23, 42, 0.8);
-      border-radius: 14px;
-      border: 1px solid rgba(55, 65, 81, 0.7);
-      font-size: 14px;
+    .feature p {
+      color: var(--muted);
+      margin: 0;
     }
 
-    .steps-grid {
+    .steps {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 20px;
+      gap: 18px;
     }
 
-    @media (max-width: 768px) {
-      .steps-grid {
-        grid-template-columns: 1fr;
-      }
+    .step-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      background: #e8f0ff;
+      color: var(--brand-dark);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin-bottom: 14px;
     }
 
-    .step-card {
-      padding: 12px;
-      background: rgba(15, 23, 42, 0.8);
-      border-radius: 14px;
-      border: 1px solid rgba(55, 65, 81, 0.7);
-      font-size: 14px;
-    }
-
-    .faq-grid {
+    .trust {
       display: grid;
-      grid-template-columns: 1.3fr 1fr;
-      gap: 20px;
-      margin-top: 20px;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
     }
 
-    @media (max-width: 900px) {
-      .faq-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .faq-item {
-      padding: 12px;
-      background: rgba(15, 23, 42, 0.8);
-      border-radius: 12px;
-      border: 1px solid rgba(55, 65, 81, 0.7);
-    }
-
-    .faq-cta-box {
-      padding: 12px;
-      border: 1px dashed rgba(129, 140, 248, 0.8);
-      border-radius: 12px;
-      background: rgba(15, 23, 42, 0.8);
+    .trust p {
+      margin: 0 0 10px;
+      color: var(--muted);
     }
 
     footer {
-      border-top: 1px solid rgba(55, 65, 81, 0.7);
-      margin-top: 40px;
-      padding-top: 12px;
-      color: var(--muted);
-      font-size: 13px;
+      margin-top: 30px;
+      padding: 28px 0 44px;
+      border-top: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .footer-links {
       display: flex;
-      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
     }
 
-    footer a {
-      color: #9ca3af;
-      text-decoration: none;
+    .small {
+      font-size: 14px;
+      color: var(--muted);
     }
 
-    footer a:hover {
-      color: #ffffff;
+    @media (max-width: 900px) {
+      .hero-grid,
+      .grid-3,
+      .steps,
+      .trust,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        padding: 14px 0;
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 <body>
-
-<div class="page">
-
-<header>
-  <div class="header-inner">
-    <div class="logo">
-      <div class="logo-badge">AD</div>
-      <div class="logo-text">
-        <span>Aliexpress image downloader</span>
-        <span>Save AliExpress images and videos</span>
-      </div>
+  <header>
+    <div class="wrap topbar">
+      <div class="brand">AliExpress Image Saver</div>
+      <nav>
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#about">About</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
     </div>
+  </header>
 
-    <nav>
-      <a href="#features">Features</a>
-      <a href="#how-it-works">How it works</a>
-      <a href="#faq">FAQ</a>
-      <a
-        class="btn-primary"
-        href="https://chromewebstore.google.com/detail/aliexpress-image-download/clhjbkeakmannhalcigjgfnbmdfekkon"
-        target="_blank"
-      >
-        Add to Chrome
-      </a>
-    </nav>
-  </div>
-</header>
-
-<main class="wrapper">
-
-  <!-- HERO -->
-  <section class="main-hero">
-    <div class="hero-grid">
-
-      <div>
-        <div class="pill">
-          <span class="pill-dot"></span>
-          <span>AliExpress image and video downloader</span>
-        </div>
-
-        <h1 class="hero-heading">
-          Download <span class="highlight">AliExpress product images and videos</span> in one click
-        </h1>
-
-        <p class="hero-subtitle">
-          Save all AliExpress gallery photos and videos instantly.  
-          Great for dropshippers, product pages, and ad creatives.
-        </p>
-
-        <a
-          href="https://chromewebstore.google.com/detail/aliexpress-image-download/clhjbkeakmannhalcigjgfnbmdfekkon"
-          class="btn-primary"
-          target="_blank"
-        >
-          Add to Chrome – free
-        </a>
-
-        <div class="hero-meta">
-          <span>Built for AliExpress</span>
-          <span>No signup</span>
-          <span>Full-size images</span>
-        </div>
-      </div>
-
-      <div class="hero-right">
-        <div class="hero-right-card">
-          <div class="hero-right-title">One click. Everything saved.</div>
-          <p class="hero-right-subtext">
-            Open any AliExpress product and download all images and videos fast.
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Browser-based product image tool</div>
+          <h1>Save AliExpress product images faster for research and store building</h1>
+          <p class="lead">
+            This page explains how our image-saving workflow helps ecommerce sellers collect product visuals
+            with less manual work. It is designed for people who want a cleaner way to gather listing images
+            while working in their browser.
           </p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#how-it-works">See How It Works</a>
+            <a class="btn btn-secondary" href="#about">Learn More</a>
+          </div>
+          <p class="hero-note">
+            Built for product research, store setup, and daily ecommerce workflows.
+          </p>
+        </div>
 
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px;">
-            <div class="metric-card">20–50+ images</div>
-            <div class="metric-card">10× faster</div>
-            <div class="metric-card">1-click setup</div>
+        <div class="card">
+          <img
+            src="tool-preview.png"
+            alt="Preview of the AliExpress image saver interface"
+            class="preview-img"
+          />
+          <div class="preview-caption">
+            Add your screenshot here by saving your image as <strong>tool-preview.png</strong> in the same folder.
           </div>
         </div>
       </div>
+    </section>
 
-    </div>
-  </section>
+    <section id="features">
+      <div class="wrap">
+        <h2 class="section-title">What this tool helps you do</h2>
+        <p class="section-copy">
+          The goal is simple. Save time when collecting product images for product research, listing review,
+          and store planning. The page focuses on the use case and the value for the user.
+        </p>
 
-  <!-- FEATURES -->
-  <section id="features">
-    <h2 class="section-title">Why use Aliexpress image downloader?</h2>
+        <div class="grid-3">
+          <div class="card feature">
+            <h3>Faster image collection</h3>
+            <p>
+              Gather product images with fewer steps so you can move through product research and store tasks
+              more quickly.
+            </p>
+          </div>
 
-    <div class="features-grid">
+          <div class="card feature">
+            <h3>Cleaner workflow</h3>
+            <p>
+              Keep your image-saving process simple while browsing product pages and reviewing listing content.
+            </p>
+          </div>
 
-      <div class="feature-card">
-        <h3>Download all images</h3>
-        <p>Save every gallery image with one button.</p>
-      </div>
-
-      <div class="feature-card">
-        <h3>Grab product videos</h3>
-        <p>Download AliExpress videos for ads and product pages.</p>
-      </div>
-
-      <div class="feature-card">
-        <h3>Ready for your store</h3>
-        <p>Great for Shopify, WooCommerce, and Etsy sellers.</p>
-      </div>
-
-      <div class="feature-card">
-        <h3>No account needed</h3>
-        <p>Use it instantly without creating an account.</p>
-      </div>
-
-      <div class="feature-card">
-        <h3>High quality</h3>
-        <p>Save full-size photos directly from AliExpress.</p>
-      </div>
-
-      <div class="feature-card">
-        <h3>Support</h3>
-        <p>Email anytime for help or ideas.</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section id="how-it-works">
-    <h2 class="section-title">How it works</h2>
-
-    <div class="steps-grid">
-
-      <div class="step-card">
-        <strong>1</strong>
-        <p>Install from the Chrome Web Store and pin it to your toolbar.</p>
-      </div>
-
-      <div class="step-card">
-        <strong>2</strong>
-        <p>Open any AliExpress product page and click the extension icon.</p>
-      </div>
-
-      <div class="step-card">
-        <strong>3</strong>
-        <p>Choose images or videos and download everything with one click.</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq">
-    <h2 class="section-title">Common questions</h2>
-
-    <div class="faq-grid">
-
-      <div>
-
-        <div class="faq-item">
-          <strong>Is this extension free?</strong>
-          <p>Yes, the extension is free to use.</p>
+          <div class="card feature">
+            <h3>Built for ecommerce users</h3>
+            <p>
+              Useful for dropshipping sellers, product researchers, and people who need a steady way to collect
+              product visuals.
+            </p>
+          </div>
         </div>
-
-        <div class="faq-item">
-          <strong>What permissions do you request?</strong>
-          <p>The extension needs access to AliExpress pages to read media URLs and download them.</p>
-        </div>
-
-        <div class="faq-item">
-          <strong>Do you store my data?</strong>
-          <p>All downloads happen inside your browser. We do not collect or store your browsing history or downloaded files.</p>
-        </div>
-
-        <div class="faq-item">
-          <strong>Is this official AliExpress software?</strong>
-          <p>No. This is a third-party tool and not affiliated with AliExpress or Alibaba Group.</p>
-        </div>
-
       </div>
+    </section>
 
-      <div class="faq-cta-box">
-        <strong>Ready to download your first product?</strong>
-        <p>Install the extension and open any AliExpress product page.</p>
+    <section id="how-it-works">
+      <div class="wrap">
+        <h2 class="section-title">How it works</h2>
+        <p class="section-copy">
+          Keep this section simple. Do not describe it like software setup. Describe the user flow like a normal
+          browser workflow.
+        </p>
 
-        <a
-          href="https://chromewebstore.google.com/detail/aliexpress-image-download/clhjbkeakmannhalcigjgfnbmdfekkon"
-          class="btn-primary"
-          target="_blank"
-        >
-          Add to Chrome
-        </a>
+        <div class="steps">
+          <div class="card">
+            <div class="step-num">1</div>
+            <h3>Browse product pages</h3>
+            <p>
+              Review the products you are researching and decide which images fit your product planning or store needs.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="step-num">2</div>
+            <h3>Choose the visuals you need</h3>
+            <p>
+              Pick the product images that matter for analysis, comparisons, and content preparation.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="step-num">3</div>
+            <h3>Save and organize your work</h3>
+            <p>
+              Keep your product visuals in one place so you can move into store setup, ad prep, or product review.
+            </p>
+          </div>
+        </div>
       </div>
+    </section>
 
-    </div>
-  </section>
+    <section id="about">
+      <div class="wrap">
+        <h2 class="section-title">About this site</h2>
+        <p class="section-copy">
+          This site is a product information page for an AliExpress image-saving workflow. It explains the tool,
+          its purpose, and who it helps. It is not a file-hosting page and it does not start any direct file action
+          from this page.
+        </p>
+
+        <div class="trust">
+          <div class="card">
+            <h3>Who this is for</h3>
+            <p>
+              This workflow is for ecommerce sellers, product researchers, and store builders who need product images
+              for planning and review.
+            </p>
+            <p>
+              It is meant to reduce repetitive work when handling product visuals from marketplace pages.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Business details</h3>
+            <p><strong>Site name:</strong> AliExpress Image Saver</p>
+            <p><strong>Contact:</strong> Available via email below</p>
+            <p><strong>Privacy page:</strong> <a href="privacy.html">Read Privacy Policy</a></p>
+            <p><strong>Terms:</strong> Add a terms page later if you want an extra trust signal.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    <span>© <span id="year"></span> Aliexpress image downloader</span>
-    <span>
-      <a href="mailto:Downloadtools.us@gmail.com">Contact</a> ·
-      <a href="./privacy.html">Privacy</a>
-    </span>
+    <div class="wrap footer-grid">
+      <div class="small">
+        © 2026 AliExpress Image Saver. All rights reserved.
+      </div>
+      <div class="footer-links small">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="mailto:downloadtools.us@gmail.com">Contact</a>
+      </div>
+    </div>
   </footer>
-
-</main>
-</div>
-
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
-
 </body>
 </html>
